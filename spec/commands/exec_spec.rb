@@ -849,7 +849,7 @@ __FILE__: #{path.to_s.inspect}
           gem "rack"
         G
         bundle "config path vendor/bundler"
-        bundle! :install, :system_bundler => true
+        bundle! :install, :bundle_bin => default_bundle_path("bin/bundle")
       end
 
       it "correctly shells out", :ruby_repo do
@@ -859,7 +859,7 @@ __FILE__: #{path.to_s.inspect}
           puts `bundle exec echo foo`
         RB
         file.chmod(0o777)
-        bundle! "exec #{file}", :system_bundler => true
+        bundle! "exec #{file}", :bundle_bin => default_bundle_path("bin/bundle")
         expect(out).to eq("foo")
       end
     end

@@ -109,9 +109,7 @@ module Spec
 
       bundle_bin = options.delete(:bundle_bin) || bindir.join("bundle")
 
-      if system_bundler = options.delete(:system_bundler)
-        bundle_bin = default_bundle_path("bin/bundler")
-      end
+      system_bundler = [system_gem_path("bin/bundle"), default_bundle_path("bin/bundle")].include?(bundle_bin)
 
       env = options.delete(:env) || {}
       env["PATH"].gsub!("#{Path.root}/exe", "") if env["PATH"] && system_bundler

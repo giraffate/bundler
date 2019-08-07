@@ -46,8 +46,8 @@ RSpec.describe "bundle pristine", :ruby_repo do
       ENV["BUNDLER_SPEC_KEEP_DEFAULT_BUNDLER_GEM"] = "true"
       system_gems :bundler
       bundle! "install"
-      bundle! "pristine", :system_bundler => true
-      bundle! "-v", :system_bundler => true
+      bundle! "pristine", :bundle_bin => system_gem_path("bin/bundle")
+      bundle! "-v", :bundle_bin => system_gem_path("bin/bundle")
 
       expected = if Bundler::VERSION < "3.0"
         "Bundler version"
