@@ -107,7 +107,7 @@ module Spec
       with_sudo = options.delete(:sudo)
       sudo = with_sudo == :preserve_env ? "sudo -E" : "sudo" if with_sudo
 
-      bundle_bin = options.delete("bundle_bin") || bindir.join("bundle")
+      bundle_bin = options.delete(:bundle_bin) || bindir.join("bundle")
 
       if system_bundler = options.delete(:system_bundler)
         bundle_bin = default_bundle_path("bin/bundler")
@@ -173,7 +173,7 @@ module Spec
     end
 
     def bundler(cmd, options = {})
-      options["bundle_bin"] = bindir.join("bundler")
+      options[:bundle_bin] = bindir.join("bundler")
       bundle(cmd, options)
     end
 
